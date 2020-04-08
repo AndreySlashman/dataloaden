@@ -189,6 +189,13 @@ func (l *{{.Name}}) Clear(key {{.KeyType}}) {
 	l.mu.Unlock()
 }
 
+// Clear cache map
+func (l *{{.Name}}) ClearAll() {
+	l.mu.Lock()
+	l.cache = map[{{.KeyType}}]{{.ValType.String}}{}
+	l.mu.Unlock()
+}
+
 func (l *{{.Name}}) unsafeSet(key {{.KeyType}}, value {{.ValType.String}}) {
 	if l.cache == nil {
 		l.cache = map[{{.KeyType}}]{{.ValType.String}}{}
